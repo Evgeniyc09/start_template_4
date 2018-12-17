@@ -30,7 +30,7 @@ gulp.task('browser-sync', function() {
 	})
 });
 gulp.task('svg', () => {
-	return gulp.src('app/img/*.svg')
+	return gulp.src('app/img/svg/*.svg')
 		.pipe(svgmin({
 			js2svg: {
 				pretty: true
