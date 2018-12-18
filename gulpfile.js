@@ -80,6 +80,7 @@ gulp.task('scripts', function() {
 	return gulp.src([
 		'app/libs/jquery/dist/jquery.min.js',
 		'app/libs/svg/svg4everybody.min.js',
+		'app/libs/magnific-popup/jquery.magnific-popup.min.js',
 		// 'app/libs/swiper/swiper.min.js',
 		// 'app/libs/fancy/jquery.fancybox.min.js',
 		'app/js/common.js', // Always at the end
