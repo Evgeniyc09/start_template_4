@@ -55,6 +55,7 @@ gulp.task('svg', () => {
 			}
 		}))
 		.pipe(gulp.dest('app/'))
+		.pipe(browserSync.reload({ stream: true }))
 })
 gulp.task('styles', function() {
 	return gulp.src('app/'+syntax+'/**/*.'+syntax+'')
@@ -62,6 +63,15 @@ gulp.task('styles', function() {
 	.pipe(rename({ suffix: '.min', prefix : '' }))
 	.pipe(autoprefixer(['last 15 versions']))
 	.pipe(cleancss( {level: { 1: { specialComments: 0 } } })) // Opt., comment out when debugging
+	.pipe(gulp.dest('app/css'))
+	.pipe(browserSync.stream())
+});
+
+gulp.task('sass', function() {
+	return gulp.src('app/'+syntax+'/**/*.'+syntax+'')
+	.pipe(sass().on("error", notify.onError()))
+	.pipe(autoprefixer(['last 15 versions']))
+	// .pipe(cleancss( {level: { 1: { specialComments: 0 } } })) // Opt., comment out when debugging
 	.pipe(gulp.dest('app/css'))
 	.pipe(browserSync.stream())
 });
@@ -101,7 +111,7 @@ gulp.task('rsync', function() {
 });
 
 if (gulpversion == 3) {
-	gulp.task('watch', ['styles', 'scripts', 'browser-sync'], function() {
+	gulp.task('watch', ['styles', 'stylescss', 'scripts', 'browser-sync'], function() {
 		gulp.watch('app/'+syntax+'/**/*.'+syntax+'', ['styles']);
 		gulp.watch(['libs/**/*.js', 'app/js/common.js'], ['scripts']);
 		gulp.watch('app/*.html', ['code'])
@@ -112,8 +122,9 @@ if (gulpversion == 3) {
 if (gulpversion == 4) {
 	gulp.task('watch', function() {
 		gulp.watch('app/'+syntax+'/**/*.'+syntax+'', gulp.parallel('styles'));
+		gulp.watch('app/'+syntax+'/**/*.'+syntax+'', gulp.parallel('sass'));
 		gulp.watch(['libs/**/*.js', 'app/js/common.js'], gulp.parallel('scripts'));
 		gulp.watch('app/*.html', gulp.parallel('code'))
 	});
-	gulp.task('default', gulp.parallel('watch', 'styles', 'scripts', 'svg', 'browser-sync'));
+	gulp.task('default', gulp.parallel('watch', 'sass', 'styles', 'scripts', 'svg', 'browser-sync'));
 }
