@@ -10,8 +10,8 @@ Author: <a href="https://vk.com/id149174496" target="_blank">Evgeniy Chernyshov<
 <ol>
 	<li><a href="https://github.com/Evgeniyc09/start_template_4">Download</a> <strong>Start Template 4</strong> from GitHub;</li>
 	<li>Install Node Modules: <strong>npm i</strong>;</li>
-  <li>Install <strong>svg npm install gulp-svg-sprite gulp-svgmin gulp-cheerio gulp-replace -g</strong></li>
-  <li>link<strong>npm link gulp-svg-sprite gulp-svgmin gulp-cheerio gulp-replace</strong></li>
+  <li>Install svg <strong>npm install gulp-svg-sprite gulp-svgmin gulp-cheerio gulp-replace -g</strong></li>
+  <li>link<strong> npm link gulp-svg-sprite gulp-svgmin gulp-cheerio gulp-replace</strong></li>
 	<li>Run the template: <strong>gulp</strong>.</li>
 </ol>
 
